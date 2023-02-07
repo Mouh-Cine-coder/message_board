@@ -13,17 +13,14 @@ class PostTests(TestCase):
     def test_url_exist_at_correct_location(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        
-    def test_url_available_by_name(self):
+    
+    def test_homepage(self):
         response = self.client.get(reverse("home-page"))
         self.assertEqual(response.status_code, 200)
-    
-    def test_template_name_correct(self):
-        response = self.client.get(reverse("home-page"))
         self.assertTemplateUsed(response, "home.html")
-
-    def test_template_content(self):
-        response = self.client.get(reverse("home-page"))
         self.assertContains(response, "<h1>Message board home page</h1>")
+        
+        
+    
 
 
